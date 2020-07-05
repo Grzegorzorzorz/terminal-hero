@@ -1,4 +1,5 @@
-import commands
+import commands.help_
+import commands.exit_
 
 # Converts given commands to upper case, for execution.
 def sanitiser(raw_data):
@@ -7,9 +8,9 @@ def sanitiser(raw_data):
 # Executes the provided command
 def executor(command, parameter):
     if command == "HELP":
-        commands.help_(parameter)
+        commands.help_.main(parameter)
     if command == "EXIT":
-        commands.exit_()
+        commands.exit_.main
 
 # Tests if the inputted command is valid, and if it is, passes it to
 # the executor.

@@ -1,4 +1,4 @@
-def help_(command=False):
+def main(command=False):
     # Checks if command specific help is requested.
     if command == False:
         # Prints command list
@@ -35,8 +35,3 @@ This, however, does not save the game, so use with care.
         print("""
 There is no help entry for the specified command.
         """)
-
-def exit_():
-    import mainloop
-
-    mainloop.operation_code = 0
