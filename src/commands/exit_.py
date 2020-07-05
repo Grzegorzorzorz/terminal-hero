@@ -1,4 +1,3 @@
 def main():
-    import mainloop
-
-    mainloop.operation_code = 0
+    # This will have more functionality in the future.
+    exit()
