@@ -8,6 +8,7 @@ config.read(config_file_path)
 
 class Debug:
     logging = config["debug"]["logging"]
+    debug_commands = config["debug"]["debug-commands"]
 
 class Other:
     game_version = config["other"]["game-version"]
