@@ -12,7 +12,7 @@ Grzegorz Ciołek's
   | |  __/ |  | | | | | | | | | | (_| | | |  _  |  __/ | | (_) |
   |_|\___|_|  |_| |_| |_|_|_| |_|\__,_|_| |_| |_|\___|_|  \___/ 
 
-Version: {config.other_game_version}
+Version: {config.Other.game_version}
 """)
 
 def options():

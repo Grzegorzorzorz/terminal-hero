@@ -27,7 +27,7 @@ def generate_world(width, height):
         for x in range(0, width):
             region_map[x][y] = Region()
             # Display world generation information if debug logging is enabled.
-            if config.debug_logging == "True":
+            if config.Debug.logging == "True":
                 print(
                     f"{region_map[x][y]}, \
                     {region_map[x][y].feature}, \

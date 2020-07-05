@@ -17,7 +17,7 @@ elif menu_output == 1:
     sys.stdout.write("Done! \n")
     print("""
 Welcome to Terminal Hero!
-For a list of commands, type help.
+For a list of commands, type "help".
     """)
     mainloop.loop()
 
