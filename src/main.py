@@ -5,8 +5,6 @@ import mainloop
 import world
 import menu
 
-version = "0.0.1 IN-DEV"
-
 # Start the main menu.
 menu_output = menu.start()
 if menu_output == 0:
