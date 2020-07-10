@@ -33,6 +33,6 @@ def generate_world(width, height):
             region_map[x][y] = Region()
             # Display world generation information if debug logging is enabled.
             if config.Debug.logging == "True":
-                print(region_map[x])
+                print(f"[DEBUG]: {region_map[x]}")
     # Announce the end of world generation
     sys.stdout.write("Done! \n")
