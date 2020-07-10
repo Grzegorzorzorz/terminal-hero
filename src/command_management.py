@@ -10,7 +10,7 @@ def executor(command, parameter):
     if command == "HELP":
         commands.help_.main(parameter)
     if command == "EXIT":
-        commands.exit_.main()
+        commands.exit_.main(parameter)
 
 # Tests if the inputted command is valid, and if it is, passes it to
 # the executor.
@@ -18,12 +18,15 @@ def validator(sanitised_command):
     # Help command
     if sanitised_command[0:4] == "HELP":
         if sanitised_command[5:] == "":
-            executor(sanitised_command[0:4], False)
+            executor(sanitised_command[0:4], None)
         else:
             executor(sanitised_command[0:4], sanitised_command[5:])
     # Exit command
     elif sanitised_command[0:4] == "EXIT":
-        executor(sanitised_command[0:4], None)
+        if sanitised_command[5:] == "":
+            executor(sanitised_command[0:4], None)
+        elif sanitised_command[5:] == "QUIT":
+            executor(sanitised_command[0:4], "QUIT")
     else:
         print("""
 Unknown command, for a list of commands, type "help"
