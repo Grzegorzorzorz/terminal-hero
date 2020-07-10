@@ -32,14 +32,3 @@ def about():
 NOT YET ADDED
     """)
 
-def start():
-    menu_status = 1
-    while menu_status == 1:
-        render()
-        user_input = input(" > ")
-        if user_input == "1":
-            menu_status = 0
-            return 1
-        if user_input == "3":
-            menu_status = 0
-            return 0
