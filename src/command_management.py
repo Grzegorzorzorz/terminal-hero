@@ -10,7 +10,7 @@ def executor(command, parameter):
     if command == "HELP":
         commands.help_.main(parameter)
     if command == "EXIT":
-        commands.exit_.main
+        commands.exit_.main()
 
 # Tests if the inputted command is valid, and if it is, passes it to
 # the executor.

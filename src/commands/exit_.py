@@ -1,3 +1,7 @@
+import mainloop
+import config
+
 def main():
-    # This will have more functionality in the future.
-    exit()
+    mainloop.operation_code = 0
+    if config.Debug.logging == "True":
+        print(f"mainloop.operation_code = {mainloop.operation_code}")
