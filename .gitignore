@@ -1,3 +1,4 @@
 virtual-env
 src/__pycache__
 src/commands/__pycache__
+game.log

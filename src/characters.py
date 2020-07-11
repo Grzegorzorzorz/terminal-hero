@@ -3,6 +3,8 @@ import sys
 import config
 import world
 
+from logger import log
+
 class PlayerObject:
     def __init__(self, x, y, inventory, level, health, max_health):
         self.x = x
@@ -16,6 +18,7 @@ class PlayerObject:
 player = None
 
 def generate_player():
+    log("characters", "Generating player...")
     # Announce generation of the player.
     sys.stdout.write("Generating player...   ")
     global player
@@ -27,7 +30,6 @@ def generate_player():
         health=20,
         max_health=20
     )
-    # "Discover" the spawn region.
-    world.region_map[2][2].discovered = True
     # Announce successful player generation.
+    log("characters", "Generated player successfully.")
     sys.stdout.write("Done! \n")

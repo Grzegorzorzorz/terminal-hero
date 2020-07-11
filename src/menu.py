@@ -1,7 +1,10 @@
 import os
 
+import initiator
 import mainloop
 import config
+
+from logger import log
 
 def header_text():
     print(f"""
@@ -33,4 +36,22 @@ def render(menu):
     elif menu == "ABOUT":
         about()
     print("")
+
+def run():
+    log("menu", "Rendering 'MAIN'.")
+    render("MAIN")
+    user_input = input(" > ")
+    log("menu", f"User inputted '{user_input}'.")
+    if user_input == "1":
+        log("menu", "Starting new game.")
+        initiator.new_game()
+        mainloop.operation_code = 1
+    elif user_input == "2":
+        log("menu", "Rendering 'ABOUT'.")
+        render("ABOUT")
+        input(" > ")
+    elif user_input == "3":
+        log("menu", "Setting op code to 0 - Exiting game")
+        mainloop.operation_code = 0
+        os.system("clear")
 

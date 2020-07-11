@@ -4,26 +4,36 @@ import config
 import characters
 import world
 
+from logger import log
+
 # The map should look something like the following:
 """
-·-----------·   Key:
-| # # # # # |   # - Unexplored
-| # # # # # |   P - Player location
-| # # P # # |   + - Explored
-| # # # # # |
-| # # # # # |
-·-----------·
+ N  ·-----------·   Key:
+_|_ | # # # # # |   # - Unexplored
+ |  | # # # # # |   P - Player location
+    | # # P # # |   + - Explored
+    | # # # # # |
+    | # # # # # |
+    ·-----------·
 """
 
 
 def render():
+    log("commands.map", "Rendering map...")
+    # Line 0
     print("")
     # Line 1
+    sys.stdout.write(" N  ")
     sys.stdout.write("·-----------·    ")
     sys.stdout.write("Key: \n")
     # Lines 2 - 6
     for y in range(0, 5):
-        sys.stdout.write("| ")
+        if y == 0:
+            sys.stdout.write("_|_ | ")
+        elif y == 1:
+            sys.stdout.write(" |  | ")
+        else:
+            sys.stdout.write("    | ")
         for x in range(0, 5):
             if world.region_map[x][y].discovered == True:
                 if characters.player.x == x and characters.player.y == y:
@@ -48,4 +58,5 @@ def render():
                 else:
                     print("|")
     # Line 7 - 8
-    print("·-----------· \n")
+    print("    ·-----------· \n")
+    log("commands.map", "Map rendered successfully.")

@@ -4,14 +4,17 @@ import commands.exit_
 import commands.map
 import commands.move
 
+from logger import log
+
 # Converts given commands to upper case, for execution.
 def sanitiser(raw_data):
+    log("command_management", "Sanitising input.")
     return raw_data.upper()
 
 # Executes the provided command
 def executor(command, parameter):
-    if config.Debug.logging == "True":
-        print(f"[DEBUG] Command: {command}, Parameter: {parameter}")
+    log("command_management", f"Found command '{command}' \
+with parameter '{parameter}'. Executing...")
     if command == "HELP":
         commands.help_.main(parameter)
     elif command == "EXIT":
@@ -25,6 +28,7 @@ def executor(command, parameter):
 # Tests if the inputted command is valid, and if it is, passes it to
 # the executor.
 def validator(sanitised_command):
+    log("command_management", "Testing validity...")
     # Help command
     if sanitised_command[0:4] == "HELP":
         if sanitised_command[5:] == "":
@@ -33,10 +37,12 @@ def validator(sanitised_command):
             executor(sanitised_command[0:4], sanitised_command[5:])
     # Exit command
     elif sanitised_command[0:4] == "EXIT":
+        if sanitised_command[5:] == "QUIT":
+            executor(sanitised_command[0:4], "QUIT")
         if sanitised_command[5:] == "":
             executor(sanitised_command[0:4], None)
-        elif sanitised_command[5:] == "QUIT":
-            executor(sanitised_command[0:4], "QUIT")
+        else:
+            executor(sanitised_command[0:4], sanitised_command[5:])
     # Map command
     elif sanitised_command == "MAP":
         executor(sanitised_command, None)
@@ -53,6 +59,7 @@ def validator(sanitised_command):
             executor("MOVE", None)
 
     else:
+        log("command_management", "Command not found -- Displaying error.")
         print("""
 Unknown command, for a list of commands, type "help"
         """)

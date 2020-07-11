@@ -16,7 +16,6 @@ class MapMarkers:
     boss_region = config["map-markers"]["boss-region"]
 
 class Debug:
-    logging = config["debug"]["logging"]
     debug_commands = config["debug"]["debug-commands"]
 
 class Other:
