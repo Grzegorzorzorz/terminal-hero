@@ -1,4 +1,5 @@
 import sys
+import os
 
 import initiator
 import command_management
@@ -19,10 +20,14 @@ def loop():
             user_input = input(" > ")
             command_management.run(user_input)
         while operation_code == 2:
-            menu.render()
+            menu.render("MAIN")
             user_input = input(" > ")
             if user_input == "1":
                 initiator.new_game()
                 operation_code = 1
-            if user_input == "3":
+            elif user_input == "2":
+                menu.render("ABOUT")
+                input(" > ")
+            elif user_input == "3":
                 operation_code = 0
+                os.system("clear")

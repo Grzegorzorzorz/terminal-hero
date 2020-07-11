@@ -1,5 +1,6 @@
 import sys
 
+import config
 import world
 
 class PlayerObject:
@@ -19,12 +20,14 @@ def generate_player():
     sys.stdout.write("Generating player...   ")
     global player
     player = PlayerObject(
-        x = 3,
-        y = 3,
+        x = 2,
+        y = 2,
         inventory=[],
         level=1,
         health=20,
         max_health=20
     )
-    # Announce successful player generation
+    # "Discover" the spawn region.
+    world.region_map[2][2].discovered = True
+    # Announce successful player generation.
     sys.stdout.write("Done! \n")

@@ -20,15 +20,17 @@ def options():
     print("2.    About")
     print("3.    Exit")
 
-def render():
+def about():
+    print("NOT YET IMPLEMENTED! \n")
+    print("Press RETURN to continue...")
+
+def render(menu):
     os.system("clear")
     header_text()
     print("\n \n")
-    options()
+    if menu == "MAIN":
+        options()
+    elif menu == "ABOUT":
+        about()
     print("")
-
-def about():
-    print("""
-NOT YET ADDED
-    """)
 

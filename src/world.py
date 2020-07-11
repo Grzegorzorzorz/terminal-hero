@@ -1,17 +1,23 @@
 import sys
+import random
+
 
 import config
 
 class Region:
-    def __init__(self, spawntile=False, discovered=False, feature=0, marker=""):
+    def __init__(
+        self,
+        spawntile=False,
+        discovered=False,
+        feature=0,
+        marker=config.MapMarkers.explored_region
+        ):
         self.spawntile = spawntile
         self.discovered = discovered
         self.feature = self.generate()
         self.marker = marker
 
     def generate(self):
-        import random
-
         feature_id = random.randint(0, 1)
         if feature_id == 0:
             return "Forest"
@@ -34,5 +40,10 @@ def generate_world(width, height):
             # Display world generation information if debug logging is enabled.
             if config.Debug.logging == "True":
                 print(f"[DEBUG]: {region_map[x]}")
-    # Announce the end of world generation
+    
+    # Generate the spawn region.
+    region_map[2][2].spawntile = True
+    region_map[2][2].marker = config.MapMarkers.spawn_point
+
+    # Announce the end of world generation.
     sys.stdout.write("Done! \n")
