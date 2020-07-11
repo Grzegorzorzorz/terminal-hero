@@ -12,6 +12,8 @@ def main(command=None):
         map()
     elif command == "MOVE":
         move()
+    elif command == "OBSERVE":
+        observe()
     else:
         print("""
 There is no help entry for the specified command.
@@ -21,7 +23,7 @@ def command_list():
     log("commands.help_", "Displayed command list.")
     print(f"""
 Available commands:
-    "help", "exit", "map", "move"
+    "help", "exit", "map", "move", "observe"
 
 For help with a specific command, type "help [command]"
     """)
@@ -76,4 +78,13 @@ Parameters:
     "east" -- Moves your character East.
     "south" -- Moves your character South.
     "west" -- Moves your character West.
+    """)
+
+def observe():
+    log("commands.help_", "Displayed help for 'observe'.")
+    print("""
+Outputs a description of your surroundings.
+
+Usage:
+    observe
     """)

@@ -3,6 +3,7 @@ import commands.help_
 import commands.exit_
 import commands.map
 import commands.move
+import commands.observe
 
 from logger import log
 
@@ -13,8 +14,8 @@ def sanitiser(raw_data):
 
 # Executes the provided command
 def executor(command, parameter):
-    log("command_management", f"Found command '{command}' \
-with parameter '{parameter}'. Executing...")
+    log("command_management", f"Passed command '{command}' \
+with parameter '{parameter}'. Attempting to execute...")
     if command == "HELP":
         commands.help_.main(parameter)
     elif command == "EXIT":
@@ -23,6 +24,10 @@ with parameter '{parameter}'. Executing...")
         commands.map.render()
     elif command == "MOVE":
         commands.move.main(parameter)
+    elif command == "OBSERVE":
+        commands.observe.main()
+    else:
+        log("command_management", "Command not found.")
 
 
 # Tests if the inputted command is valid, and if it is, passes it to
@@ -39,13 +44,14 @@ def validator(sanitised_command):
     elif sanitised_command[0:4] == "EXIT":
         if sanitised_command[5:] == "QUIT":
             executor(sanitised_command[0:4], "QUIT")
-        if sanitised_command[5:] == "":
+        elif sanitised_command[5:] == "":
             executor(sanitised_command[0:4], None)
         else:
             executor(sanitised_command[0:4], sanitised_command[5:])
     # Map command
     elif sanitised_command == "MAP":
         executor(sanitised_command, None)
+    # Move command
     elif sanitised_command[0:4] == "MOVE":
         if sanitised_command[5:] == "NORTH":
             executor("MOVE", "NORTH")
@@ -57,7 +63,9 @@ def validator(sanitised_command):
             executor("MOVE", "WEST")
         else:
             executor("MOVE", None)
-
+    # Observe command
+    elif sanitised_command[0:7] == "OBSERVE":
+        executor(sanitised_command[0:7], None)
     else:
         log("command_management", "Command not found -- Displaying error.")
         print("""
