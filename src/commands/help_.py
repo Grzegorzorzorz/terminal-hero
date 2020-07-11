@@ -21,7 +21,7 @@ def command_list():
     log("commands.help_", "Displayed command list.")
     print(f"""
 Available commands:
-    "help", "exit"
+    "help", "exit", "map", "move"
 
 For help with a specific command, type "help [command]"
     """)
