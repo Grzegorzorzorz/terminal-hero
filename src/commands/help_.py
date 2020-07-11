@@ -1,16 +1,27 @@
-def main(command=False):
+def main(command=None):
     # Checks if command specific help is requested.
-    if command == False:
-        # Prints command list
-        print(f"""
+    if command == None:
+        command_list()
+    elif command == "HELP":
+        help_()
+    elif command == "EXIT":
+        exit_()
+
+    else:
+        print("""
+There is no help entry for the specified command.
+        """)
+
+def command_list():
+     print(f"""
 Available commands:
     "help", "exit"
 
 For help with a specific command, type "help [command]"
         """)
-    elif command == "HELP":
-        # Prints help for the help command
-        print("""
+
+def help_():
+    print("""
 Displays help for commands.
 
 Usage:
@@ -21,17 +32,16 @@ specified command.
 
 Otherwise displays a list of all availible commands.
         """)
-    elif command == "EXIT":
-        # Prints help for the exit command
-        print("""
+
+def exit_():
+    print("""
 Exits the game.
 
 Usage:
-    exit
-    
-This, however, does not save the game, so use with care.
-        """)
-    else:
-        print("""
-There is no help entry for the specified command.
+    exit [parameter]
+
+By default, the game exits into the menu, WITHOUT saving.
+
+Parameters:
+    "quit" -- Exits the game fully, does NOT save.
         """)
