@@ -14,9 +14,9 @@ Clone the repository by doing:
 
 `https://github.com/Grzegorzorzorz/terminal-hero.git`
 
-To start the game, run:
+## Usage
 
-`python3 ./terminal-hero/src/main.py`
+Run `main.py` found in `terminal-hero/src`.
 
 ## Contributors
 Grzegorz Ciołek - [@Grzegorzorzorz](https://github.com/Grzegorzorzorz)
