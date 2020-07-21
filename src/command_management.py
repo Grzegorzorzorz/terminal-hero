@@ -34,38 +34,16 @@ with parameter '{parameter}'. Attempting to execute...")
 # the executor.
 def validator(sanitised_command):
     log("command_management", "Testing validity...")
-    # Help command
-    if sanitised_command[0:4] == "HELP":
-        if sanitised_command[5:] == "":
-            executor(sanitised_command[0:4], None)
-        else:
-            executor(sanitised_command[0:4], sanitised_command[5:])
-    # Exit command
-    elif sanitised_command[0:4] == "EXIT":
-        if sanitised_command[5:] == "QUIT":
-            executor(sanitised_command[0:4], "QUIT")
-        elif sanitised_command[5:] == "":
-            executor(sanitised_command[0:4], None)
-        else:
-            executor(sanitised_command[0:4], sanitised_command[5:])
-    # Map command
-    elif sanitised_command == "MAP":
-        executor(sanitised_command, None)
-    # Move command
-    elif sanitised_command[0:4] == "MOVE":
-        if sanitised_command[5:] == "NORTH":
-            executor("MOVE", "NORTH")
-        elif sanitised_command[5:] == "EAST":
-            executor("MOVE", "EAST")
-        elif sanitised_command[5:] == "SOUTH":
-            executor("MOVE", "SOUTH")
-        elif sanitised_command[5:] == "WEST":
-            executor("MOVE", "WEST")
-        else:
-            executor("MOVE", None)
-    # Observe command
-    elif sanitised_command[0:7] == "OBSERVE":
-        executor(sanitised_command[0:7], None)
+    if help_(sanitised_command) == 0:
+        pass
+    elif exit_(sanitised_command) == 0:
+        pass
+    elif map_(sanitised_command) == 0:
+        pass
+    elif move(sanitised_command) == 0:
+        pass
+    elif observe(sanitised_command) == 0:
+        pass
     else:
         log("command_management", "Command not found -- Displaying error.")
         print("""
@@ -75,3 +53,70 @@ Unknown command, for a list of commands, type "help"
 # Unifies all of the sanitisation/validation/execution functions.
 def run(command):
     validator(sanitiser(command))
+
+# Missing parameter error message.
+def missing_parameter(command):
+    log("command_management", "Command missing parameter -- Displaying error.")
+    print(f"""
+The "{command}" command either requires a parameter to function and one was not
+provided, or the supplied parameter was invalid.
+
+Type "help {command}" for a list of valid parameters.
+    """)
+
+# Command validator testing functions.
+def help_(sanitised_command):
+    if sanitised_command[0:4] == "HELP":
+        if sanitised_command[5:] == "":
+            executor(sanitised_command[0:4], None)
+            return 0
+        else:
+            executor(sanitised_command[0:4], sanitised_command[5:])
+            return 0
+
+def exit_(sanitised_command):
+    if sanitised_command[0:4] == "EXIT":
+        if sanitised_command[5:] == "QUIT":
+            executor(sanitised_command[0:4], "QUIT")
+            return 0
+        elif sanitised_command[5:] == "":
+            executor(sanitised_command[0:4], None)
+            return 0
+        else:
+            missing_parameter("exit")
+            return 0
+
+def map_(sanitised_command):
+    if sanitised_command == "MAP":
+        executor(sanitised_command, None)
+        return 0
+    elif sanitised_command[4:] == "":
+        missing_parameter("map")
+        return 0
+    else:
+        return 1
+
+def move(sanitised_command):
+    if sanitised_command[0:4] == "MOVE":
+        if sanitised_command[5:] == "NORTH":
+            executor("MOVE", "NORTH")
+            return 0
+        elif sanitised_command[5:] == "EAST":
+            executor("MOVE", "EAST")
+            return 0
+        elif sanitised_command[5:] == "SOUTH":
+            executor("MOVE", "SOUTH")
+            return 0
+        elif sanitised_command[5:] == "WEST":
+            executor("MOVE", "WEST")
+            return 0
+        else:
+            missing_parameter("move")
+            return 0
+
+def observe(sanitised_command):
+    if sanitised_command[0:7] == "OBSERVE":
+        executor(sanitised_command[0:7], None)
+        return 0
+    else:
+        return 1
