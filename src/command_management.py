@@ -4,6 +4,7 @@ import commands.exit_
 import commands.map
 import commands.move
 import commands.observe
+import commands.inventory
 
 from logger import log
 
@@ -26,6 +27,8 @@ with parameter '{parameter}'. Attempting to execute...")
         commands.move.main(parameter)
     elif command == "OBSERVE":
         commands.observe.main()
+    elif command == "INVENTORY":
+        commands.inventory.main()
     else:
         log("command_management", "Command not found.")
 
@@ -43,6 +46,8 @@ def validator(sanitised_command):
     elif move(sanitised_command) == 0:
         pass
     elif observe(sanitised_command) == 0:
+        pass
+    elif inventory(sanitised_command) == 0:
         pass
     else:
         log("command_management", "Command not found -- Displaying error.")
@@ -68,19 +73,19 @@ Type "help {command}" for a list of valid parameters.
 def help_(sanitised_command):
     if sanitised_command[0:4] == "HELP":
         if sanitised_command[5:] == "":
-            executor(sanitised_command[0:4], None)
+            executor("HELP", None)
             return 0
         else:
-            executor(sanitised_command[0:4], sanitised_command[5:])
+            executor("HELP", sanitised_command[5:])
             return 0
 
 def exit_(sanitised_command):
     if sanitised_command[0:4] == "EXIT":
         if sanitised_command[5:] == "QUIT":
-            executor(sanitised_command[0:4], "QUIT")
+            executor("EXIT", "QUIT")
             return 0
         elif sanitised_command[5:] == "":
-            executor(sanitised_command[0:4], None)
+            executor("EXIT", None)
             return 0
         else:
             missing_parameter("exit")
@@ -88,9 +93,9 @@ def exit_(sanitised_command):
 
 def map_(sanitised_command):
     if sanitised_command == "MAP":
-        executor(sanitised_command, None)
+        executor("MAP", None)
         return 0
-    elif sanitised_command[4:] == "":
+    elif sanitised_command[:3] == "MAP" and sanitised_command[4:] != "":
         missing_parameter("map")
         return 0
     else:
@@ -115,8 +120,23 @@ def move(sanitised_command):
             return 0
 
 def observe(sanitised_command):
-    if sanitised_command[0:7] == "OBSERVE":
-        executor(sanitised_command[0:7], None)
+    if sanitised_command == "OBSERVE":
+        executor("OBSERVE", None)
         return 0
+    elif sanitised_command[:7] == "OBSERVE" and \
+        sanitised_command[8:] != "":
+            missing_parameter("map")
+            return 0
+    else:
+        return 1
+
+def inventory(sanitised_command):
+    if sanitised_command[0:9] == "INVENTORY":
+        executor("INVENTORY", None)
+        return 0
+    elif sanitised_command[:9] == "INVENTORY" and \
+        sanitised_command[10:] != "":
+            missing_parameter("inventory")
+            return 0
     else:
         return 1
