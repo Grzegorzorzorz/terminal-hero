@@ -22,19 +22,31 @@ class Potion:
     2 - Decreases enemy health points by "effect".
     """
 
-nothing = Nothing(
-    name="[Empty]"
-)
 
-basic_sword = Weapon(
-    name="Basic Sword",
-    damage=[2,3],
-    value=5
-)
+weapons = {
+    0 : Weapon(
+        name="Fists",
+        damage=[1,2],
+        value=None
+    ),
+    1 : Weapon(
+        name="Basic Sword",
+        damage=[2,3],
+        value=5
+    )
+}
 
-healing_potion = Potion(
-    name="Healing Potion",
-    type_=0,
-    effect=5,
-    value=5
+potions = {
+    0 : Potion(
+        name="Healing Potion",
+        type_=0,
+        effect=5,
+        value=5
 )
+}
+
+other = {
+    0 : Nothing(
+        name="[Empty]"
+    )
+}

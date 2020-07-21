@@ -2,6 +2,7 @@ import sys
 import random
 
 import config
+import characters
 
 from logger import log
 
@@ -11,11 +12,13 @@ class Region:
         spawntile=False,
         discovered=False,
         feature=0,
+        NPC=None,
         marker=config.MapMarkers.explored_region
         ):
         self.spawntile = spawntile
         self.discovered = discovered
         self.feature = self.generate()
+        self.NPC = NPC
         self.marker = marker
 
     def generate(self):
@@ -39,16 +42,16 @@ def generate_world():
     region_map = ([[0 for x in range(5)] for y in range(5)])
     for y in range(0, 5):
         for x in range(0, 5):
-            log("world", f"Created region {x},{y}.")
             region_map[x][y] = Region()
+            region_map[x][y].NPC = characters.generate_enemy()
+            log("world", f"Created region {x},{y}.")
     log("world", "Generated all regions successfully.")
-
-    # Generate the spawn region.
+    # Change spawn region parameters.
     log("world", "Generating spawn region...")
     region_map[2][2].spawntile = True
     region_map[2][2].marker = config.MapMarkers.spawn_point
-    # "Discover" the spawn region.
     region_map[2][2].discovered = True
+    region_map[2][2].NPC = None
 
     # Announce the end of world generation.
     log("world", "Finished world generation.")
