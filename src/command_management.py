@@ -131,7 +131,7 @@ def observe(sanitised_command):
         return 1
 
 def inventory(sanitised_command):
-    if sanitised_command[0:9] == "INVENTORY":
+    if sanitised_command == "INVENTORY":
         executor("INVENTORY", None)
         return 0
     elif sanitised_command[:9] == "INVENTORY" and \
