@@ -1,6 +1,7 @@
 import sys
 
 import config
+import items
 import world
 
 from logger import log
@@ -25,7 +26,13 @@ def generate_player():
     player = PlayerObject(
         x = 2,
         y = 2,
-        inventory=[],
+        inventory={
+            "equipped" : items.basic_sword,
+            1 : items.healing_potion,
+            2 : items.nothing,
+            3 : items.nothing,
+            "money" : 20
+        },
         level=1,
         health=20,
         max_health=20

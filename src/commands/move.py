@@ -21,6 +21,7 @@ def east():
     world.region_map[characters.player.x][characters.player.y].discovered = True
     log("commands.move", f"Player position is now \
 {characters.player.x},{characters.player.y}.")
+    print("\nYou travelled East.\n")
 
 def south():
     if characters.player.y < 4:
@@ -30,6 +31,7 @@ def south():
     world.region_map[characters.player.x][characters.player.y].discovered = True
     log("commands.move", f"Player position is now \
 {characters.player.x},{characters.player.y}.")
+    print("\nYou travelled South.\n")
 
 def west():
     if characters.player.x > 0:
@@ -39,6 +41,7 @@ def west():
     world.region_map[characters.player.x][characters.player.y].discovered = True
     log("commands.move", f"Player position is now \
 {characters.player.x},{characters.player.y}.")
+    print("\nYou travelled West.\n")
 
 def main(direction):
     if direction == "NORTH":
@@ -49,8 +52,3 @@ def main(direction):
         south()
     elif direction == "WEST":
         west()
-    elif direction == None:
-        log("commands.move", "Parameter not found -- displaying error.")
-        print("""
-Incorrect usage, type "help move" for more information.
-        """)

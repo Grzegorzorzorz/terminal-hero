@@ -51,7 +51,7 @@ def run():
         render("ABOUT")
         input(" > ")
     elif user_input == "3":
-        log("menu", "Setting op code to 0 - Exiting game")
+        log("menu", "Setting op code to 0 -- Exiting game.")
         mainloop.operation_code = 0
         os.system("clear")
 

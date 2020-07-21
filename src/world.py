@@ -29,7 +29,7 @@ class Region:
 region_map = []
 
 # Declares the generate world function
-def generate_world(width, height):
+def generate_world():
     log("world", "Starting generation...")
     global region_map
     # Announce world generation.
@@ -37,8 +37,8 @@ def generate_world(width, height):
     # Declare the world map as a 2D array.
     log("world", "Creating region map...")
     region_map = ([[0 for x in range(5)] for y in range(5)])
-    for y in range(0, height):
-        for x in range(0, width):
+    for y in range(0, 5):
+        for x in range(0, 5):
             log("world", f"Created region {x},{y}.")
             region_map[x][y] = Region()
     log("world", "Generated all regions successfully.")

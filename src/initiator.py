@@ -8,7 +8,7 @@ from logger import log
 def new_game():
     log("initiator", "Starting new game...")
     os.system("clear")
-    world.generate_world(5, 5)
+    world.generate_world()
     characters.generate_player()
     print("""
 Welcome to Terminal Hero!
