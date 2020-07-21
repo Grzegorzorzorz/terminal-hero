@@ -50,6 +50,25 @@ def generate_world():
     # "Discover" the spawn region.
     region_map[2][2].discovered = True
 
+    # Generate the boss region.
+    log("world", "Generating boss region...")
+    corner = random.randint(0,3)
+    if corner == 0:
+        boss_x = 0
+        boss_y = 0
+    elif corner == 1:
+        boss_x = 4
+        boss_y = 0
+    elif corner == 2:
+        boss_x = 0
+        boss_y = 4
+    elif corner == 3:
+        boss_x = 4
+        boss_y = 4
+    region_map[boss_x][boss_y].feature = "Boss"
+    region_map[boss_x][boss_y].marker = config.MapMarkers.boss_region
+    log("world", f"Boss region generated at {boss_x}, {boss_y}.")
+
     # Announce the end of world generation.
     log("world", "Finished world generation.")
     sys.stdout.write("Done! \n")
