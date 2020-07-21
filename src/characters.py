@@ -18,7 +18,7 @@ class PlayerObject:
         self.max_health = max_health
 
 class EnemyObject:
-    def __init__(self, name, race, weapon, level, loot):
+    def __init__(self, name, race, weapon, level, loot, type_):
         self.name = name
         self.race = race
         self.weapon = weapon
@@ -26,6 +26,7 @@ class EnemyObject:
         self.level = level
         self.max_health = (10 + level * 5)
         self.health = self.max_health
+        self.type_ = type_
 
     def get_name(self):
         pass
@@ -85,7 +86,8 @@ def generate_enemy():
         race=races[random.randint(0, len(races) - 1)],
         weapon=items.weapons[random.randint(0, len(items.weapons) - 1)],
         level=random.randint(1, 5),
-        loot=[]
+        loot=[],
+        type_="enemy"
     )
 
     return enemy
