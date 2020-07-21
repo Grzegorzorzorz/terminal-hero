@@ -14,6 +14,8 @@ def main(command=None):
         move()
     elif command == "OBSERVE":
         observe()
+    elif command == "INVENTORY":
+        inventory()
     else:
         print("""
 There is no help entry for the specified command.
@@ -23,7 +25,7 @@ def command_list():
     log("commands.help_", "Displayed command list.")
     print(f"""
 Available commands:
-    "help", "exit", "map", "move", "observe"
+    "help", "exit", "map", "move", "observe", "inventory"
 
 For help with a specific command, type "help [command]"
     """)
@@ -50,7 +52,7 @@ Exits the game.
 Usage:
     exit [parameter]
 
-By default, the game exits into the menu, WITHOUT saving.
+If ran with no parameter, exits to the menu, WITHOUT saving.
 
 Parameters:
     "quit" -- Exits the game fully, does NOT save.
@@ -71,7 +73,7 @@ def move():
 Moves your character in a given direction.
 
 Usage:
-    move [parameters]
+    move [parameter]
 
 Parameters:
     "north" -- Moves your character North.
@@ -87,4 +89,19 @@ Outputs a description of your surroundings.
 
 Usage:
     observe
+
+Parameters:
+    This command does not have any parameters.
+    """)
+
+def inventory():
+    log("commands.help_", "Displayed help for 'inventory'.")
+    print("""
+Displays the contents of the player's inventory.
+
+Usage:
+    inventory
+
+Parameters:
+    This command does not have any parameters.
     """)
