@@ -1,8 +1,9 @@
+import time
 import sys
 import random
 
 import config
-import characters
+import characters.NPC
 
 from logger import log
 
@@ -43,15 +44,15 @@ def generate_world():
     for y in range(0, 5):
         for x in range(0, 5):
             region_map[x][y] = Region()
-            region_map[x][y].NPC = characters.generate_enemy()
-            log("world", f"Created region {x},{y}.")
+            region_map[x][y].NPC = characters.NPC.generate_enemy()
+            log("world", f"Created region {x},{y}.", "DBUG")
     log("world", "Generated all regions successfully.")
     # Change spawn region parameters.
     log("world", "Generating spawn region...")
     region_map[2][2].spawntile = True
     region_map[2][2].marker = config.MapMarkers.spawn_point
     region_map[2][2].discovered = True
-    region_map[2][2].NPC = None
+#    region_map[2][2].NPC = None
 
     # Announce the end of world generation.
     log("world", "Finished world generation.")
